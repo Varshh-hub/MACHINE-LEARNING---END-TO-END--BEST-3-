@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Customer Churn Prediction and Retention Recommendation System"
+>
+
+<title>CHURN / RETENTION — ML SYSTEM</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"
+>
+```
+
+</head>
+
+<body>
+
+```
+<!-- ==================================================
+     PAGE LOADER
+=================================================== -->
+
+<div class="page-loader" id="pageLoader">
+
+    <div class="loader-text">
+        LOADING SYSTEM
+    </div>
+
+    <div class="loader-line">
+        <span></span>
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     NAVIGATION
+=================================================== -->
+
+<header class="topbar">
+
+    <a href="/" class="brand">
+        CHURN<span>/</span>RETENTION
+    </a>
+
+
+    <div class="topbar-right">
+
+        <span class="status-dot"></span>
+
+        <span>
+            ML SYSTEM / ONLINE
+        </span>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==================================================
+     HERO
+=================================================== -->
+
+<main>
+
+
+    <section class="hero">
+
+        <div class="hero-index">
+            01 / MACHINE LEARNING
+        </div>
+
+
+        <div class="hero-grid">
+
+
+            <div class="hero-title">
+
+                <h1>
+
+                    CUSTOMER
+                    <span>CHURN.</span>
+
+                </h1>
+
+            </div>
+
+
+            <div class="hero-description">
+
+                <p>
+                    Predict customer churn risk,
+                    understand behavioural signals,
+                    and generate actionable retention
+                    recommendations.
+                </p>
+
+
+                <div class="scroll-indicator">
+
+                    <span>
+                        SCROLL TO EXPLORE
+                    </span>
+
+                    <span class="arrow">
+                        ↓
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-meta">
+
+            <div>
+                <span class="meta-label">
+                    MODEL
+                </span>
+
+                <span>
+                    LOGISTIC REGRESSION
+                </span>
+            </div>
+
+
+            <div>
+                <span class="meta-label">
+                    OBJECTIVE
+                </span>
+
+                <span>
+                    CUSTOMER RETENTION
+                </span>
+            </div>
+
+
+            <div>
+                <span class="meta-label">
+                    OUTPUT
+                </span>
+
+                <span>
+                    RISK + ACTION
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         CUSTOMER INPUT
+    =================================================== -->
+
+    <section class="prediction-section" id="prediction">
+
+        <div class="section-number">
+            02
+        </div>
+
+
+        <div class="section-intro">
+
+            <div class="eyebrow">
+                CUSTOMER PROFILE
+            </div>
+
+            <h2>
+                WHO ARE<br>
+                <span>WE ANALYZING?</span>
+            </h2>
+
+            <p>
+                Enter the customer's behavioural and
+                subscription information to generate
+                a personalized churn risk assessment.
+            </p>
+
+        </div>
+
+
+
+        <form id="predictionForm">
+
+
+            <!-- CUSTOMER BASICS -->
+
+            <div class="form-group">
+
+                <div class="group-title">
+                    <span>01</span>
+                    CUSTOMER BASICS
+                </div>
+
+
+                <div class="input-grid">
+
+
+                    <div class="input-field">
+
+                        <label for="Age">
+                            AGE
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Age"
+                            placeholder="35"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="Gender">
+                            GENDER
+                        </label>
+
+                        <select id="Gender" required>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="Tenure">
+                            TENURE
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Tenure"
+                            placeholder="24"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BEHAVIOUR -->
+
+            <div class="form-group">
+
+                <div class="group-title">
+                    <span>02</span>
+                    CUSTOMER BEHAVIOUR
+                </div>
+
+
+                <div class="input-grid">
+
+
+                    <div class="input-field">
+
+                        <label for="Usage Frequency">
+                            USAGE FREQUENCY
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Usage Frequency"
+                            placeholder="15"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="Support Calls">
+                            SUPPORT CALLS
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Support Calls"
+                            placeholder="4"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="Last Interaction">
+                            LAST INTERACTION
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Last Interaction"
+                            placeholder="14"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACCOUNT -->
+
+            <div class="form-group">
+
+                <div class="group-title">
+                    <span>03</span>
+                    ACCOUNT & PAYMENT
+                </div>
+
+
+                <div class="input-grid">
+
+
+                    <div class="input-field">
+
+                        <label for="Subscription Type">
+                            SUBSCRIPTION TYPE
+                        </label>
+
+                        <select
+                            id="Subscription Type"
+                            required
+                        >
+
+                            <option value="Basic">
+                                Basic
+                            </option>
+
+                            <option value="Standard">
+                                Standard
+                            </option>
+
+                            <option value="Premium">
+                                Premium
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="Contract Length">
+                            CONTRACT LENGTH
+                        </label>
+
+                        <select
+                            id="Contract Length"
+                            required
+                        >
+
+                            <option value="Monthly">
+                                Monthly
+                            </option>
+
+                            <option value="Quarterly">
+                                Quarterly
+                            </option>
+
+                            <option value="Annual">
+                                Annual
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="Payment Delay">
+                            PAYMENT DELAY
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Payment Delay"
+                            placeholder="10"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-field">
+
+                        <label for="Total Spend">
+                            TOTAL SPEND
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Total Spend"
+                            placeholder="650"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <div class="form-submit">
+
+                <div class="submit-note">
+                    <span class="submit-dot"></span>
+
+                    READY FOR ANALYSIS
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="analyzeButton"
+                >
+
+                    <span>
+                        ANALYZE CUSTOMER
+                    </span>
+
+                    <span class="button-arrow">
+                        ↗
+                    </span>
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         RESULT
+    =================================================== -->
+
+    <section
+        class="result-section hidden"
+        id="result"
+    >
+
+        <div class="section-number">
+            03
+        </div>
+
+
+        <div class="result-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    MODEL OUTPUT
+                </div>
+
+                <h2>
+                    RISK
+                    <span>ASSESSMENT.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="prediction-status">
+                PREDICTION COMPLETE
+            </div>
+
+        </div>
+
+
+
+        <div class="result-main">
+
+
+            <!-- PROBABILITY -->
+
+            <div class="probability-panel">
+
+                <div class="result-label">
+                    CHURN PROBABILITY
+                </div>
+
+
+                <div
+                    class="probability"
+                    id="probability"
+                >
+                    0%
+                </div>
+
+
+                <div
+                    class="risk-badge"
+                    id="risk"
+                >
+                    —
+                </div>
+
+
+                <div class="probability-bar">
+
+                    <div
+                        id="probabilityBar"
+                        class="probability-fill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RECOMMENDATION -->
+
+            <div class="recommendation-panel">
+
+                <div class="result-label">
+                    RETENTION STRATEGY
+                </div>
+
+
+                <ul
+                    id="recommendationList"
+                    class="recommendation-list"
+                >
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- MODEL INSIGHT -->
+
+        <div class="insight-strip">
+
+            <div>
+
+                <span class="insight-number">
+                    01
+                </span>
+
+                <span>
+                    PREDICTION
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <span class="insight-number">
+                    02
+                </span>
+
+                <span>
+                    RISK CLASSIFICATION
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <span class="insight-number">
+                    03
+                </span>
+
+                <span>
+                    RETENTION ACTION
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         PROJECT INFO
+    =================================================== -->
+
+    <section class="about-section">
+
+        <div class="section-number">
+            04
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-title">
+
+                <div class="eyebrow">
+                    SYSTEM OVERVIEW
+                </div>
+
+                <h2>
+                    FROM DATA<br>
+                    <span>TO ACTION.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="about-text">
+
+                <p>
+                    This system uses a trained machine
+                    learning pipeline to estimate the
+                    probability that a customer will churn.
+                </p>
+
+                <p>
+                    Instead of stopping at prediction,
+                    the system translates the model output
+                    into a practical retention strategy.
+                </p>
+
+
+                <div class="tech-stack">
+
+                    <span>
+                        PYTHON
+                    </span>
+
+                    <span>
+                        SCIKIT-LEARN
+                    </span>
+
+                    <span>
+                        FLASK
+                    </span>
+
+                    <span>
+                        MACHINE LEARNING
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+=================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-box">
+
+        <div class="footer-content">
+
+            <div class="footer-left">
+
+                <span class="footer-label">
+                    LET'S RETAIN CUSTOMERS
+                </span>
+
+                <h2>
+                    Have a customer<br>
+                    at risk?
+                    <span>Let's act on it.</span>
+                </h2>
+
+                <p>
+                    Turn churn predictions into meaningful
+                    retention actions with data-driven insights.
+                </p>
+
+                <div class="footer-socials">
+                    <a href="https://github.com/Varshh-hub" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/varsha-a-4038ab290/" target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                    </a>
+                </div>
+
+
+            <div class="footer-right">
+
+                <a href="#prediction" class="footer-action primary">
+                    <span>RUN PREDICTION</span>
+                    <span>↗</span>
+                </a>
+
+                <a href="https://github.com/Varshh-hub/MACHINE-LEARNING---END-TO-END--BEST-3-/tree/main/1.%20CUSTOMER%20CHURN%20%3A%20RETENSION%20PREDICTION"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="footer-action">
+                    <span>VIEW PROJECT</span>
+                    <span>↗</span>
+                </a>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div>
+
+            <strong>
+                CHURN / RETENTION
+            </strong>
+
+            <span>
+                Designed &amp; Developed by Varsha A
+            </span>
+
+        </div>
+
+        <span>
+            © 2026 All Rights Reserved.
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+
+</html>

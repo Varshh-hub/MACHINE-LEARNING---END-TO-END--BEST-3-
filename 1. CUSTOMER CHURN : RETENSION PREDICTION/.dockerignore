@@ -1,0 +1,9 @@
+.venv
+__pycache__
+*.pyc
+.ipynb_checkpoints
+.git
+.gitignore
+churn_train.csv
+churn_test.csv
+prediction.ipynb
